@@ -2,3 +2,4 @@ __pycache__/
 .vercel/
 *.pyc
 .DS_Store
+.vercel
