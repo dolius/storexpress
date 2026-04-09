@@ -1,0 +1,7 @@
+{
+  "functions": {
+    "api/create-checkout.py": {
+      "runtime": "python3.12"
+    }
+  }
+}

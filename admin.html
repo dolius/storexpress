@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Storexpress Admin</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: system-ui, sans-serif; background: #fafafa; color: #111; }
+  header { display:flex; align-items:center; justify-content:space-between; padding:16px 32px; background:#fff; border-bottom:1px solid #e5e5e5; }
+  header a { text-decoration:none; color:inherit; }
+  .logo { font-size:20px; font-weight:700; letter-spacing:-0.5px; }
+  main { max-width: 900px; margin: 40px auto; padding: 0 24px; }
+  .panel { background:#fff; border:1px solid #e5e5e5; border-radius:10px; padding:28px; margin-bottom:24px; }
+  .panel h1, .panel h2 { margin-bottom:14px; }
+  .panel p, .panel li { color:#555; line-height:1.6; }
+  .warning { border-left:4px solid #111; background:#f8f8f8; }
+  .product-list { display:grid; gap:12px; }
+  .product { border:1px solid #ececec; border-radius:8px; padding:14px; display:flex; justify-content:space-between; gap:16px; }
+  .tag { display:inline-block; padding:3px 8px; border-radius:100px; font-size:11px; font-weight:700; text-transform:uppercase; background:#e6f9ec; color:#1a7a3a; }
+  .muted { color:#888; font-size:13px; }
+</style>
+</head>
+<body>
+<header>
+  <a href="/" class="logo">Storexpress</a>
+  <a href="/">← Back to store</a>
+</header>
+<main>
+  <div class="panel warning">
+    <h1>Admin status</h1>
+    <p>This Vercel deployment is running as a <strong>static storefront + Stripe checkout</strong>.</p>
+    <p>Editable admin and server-side order persistence were removed from this deploy because JSON file writes on Vercel are not durable. If you want full admin, we should wire a real database or Vercel KV instead of pretending local files are a backend.</p>
+  </div>
+
+  <div class="panel">
+    <h2>Current catalog</h2>
+    <div id="loading" class="muted">Loading products…</div>
+    <div id="list" class="product-list" style="display:none"></div>
+  </div>
+</main>
+<script>
+(async () => {
+  try {
+    const res = await fetch('/products.json', { cache: 'no-store' });
+    if (!res.ok) throw new Error();
+    const products = await res.json();
+    const list = document.getElementById('list');
+    list.innerHTML = products.map(p => `
+      <div class="product">
+        <div>
+          <div><strong>${p.name}</strong></div>
+          <div class="muted">${p.id}</div>
+          <div class="muted">${p.description}</div>
+        </div>
+        <div style="text-align:right">
+          <div><strong>$${Number(p.price).toFixed(2)}</strong></div>
+          <div class="tag">${p.active !== false ? 'active' : 'inactive'}</div>
+        </div>
+      </div>
+    `).join('');
+    document.getElementById('loading').style.display = 'none';
+    list.style.display = 'grid';
+  } catch {
+    document.getElementById('loading').textContent = 'Failed to load products.';
+  }
+})();
+</script>
+</body>
+</html>

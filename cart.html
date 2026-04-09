@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Cart</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: system-ui, sans-serif; background: #fafafa; color: #111; }
+
+  header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 32px; background: #fff; border-bottom: 1px solid #e5e5e5;
+    position: sticky; top: 0; z-index: 10;
+  }
+  header a { text-decoration: none; color: inherit; }
+  .logo { font-size: 20px; font-weight: 700; letter-spacing: -0.5px; }
+  .nav-right a { font-size: 14px; color: #555; }
+
+  main { max-width: 720px; margin: 48px auto; padding: 0 24px; }
+
+  .back { font-size: 13px; color: #888; text-decoration: none; display: inline-block; margin-bottom: 28px; }
+  .back:hover { color: #111; }
+
+  h1 { font-size: 28px; font-weight: 700; margin-bottom: 28px; }
+
+  .cart-table { width: 100%; border-collapse: collapse; }
+  .cart-table th {
+    text-align: left; font-size: 12px; font-weight: 600;
+    color: #888; letter-spacing: 0.5px; text-transform: uppercase;
+    padding: 0 0 12px; border-bottom: 1px solid #e5e5e5;
+  }
+  .cart-table td {
+    padding: 16px 0; border-bottom: 1px solid #f0f0f0;
+    font-size: 15px; vertical-align: middle;
+  }
+  .cart-table td:last-child { text-align: right; }
+
+  .item-name { font-weight: 600; }
+  .item-price { color: #888; font-size: 13px; margin-top: 2px; }
+
+  .qty-control { display: flex; align-items: center; gap: 8px; }
+  .qty-btn {
+    width: 28px; height: 28px; border: 1px solid #ccc; background: #fff;
+    border-radius: 4px; font-size: 16px; cursor: pointer; font-family: inherit;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.1s;
+  }
+  .qty-btn:hover { background: #f0f0f0; }
+  .qty-val { min-width: 24px; text-align: center; font-weight: 600; font-size: 15px; }
+
+  .remove-btn {
+    background: none; border: none; cursor: pointer;
+    color: #bbb; font-size: 18px; padding: 0 4px;
+    transition: color 0.15s;
+  }
+  .remove-btn:hover { color: #c00; }
+
+  .cart-footer {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-top: 32px; padding-top: 20px; border-top: 2px solid #111;
+  }
+  .total-label { font-size: 13px; color: #888; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+  .total-amount { font-size: 28px; font-weight: 700; }
+
+  .btn {
+    padding: 14px 28px; border-radius: 6px; font-size: 15px;
+    font-weight: 600; cursor: pointer; border: none; font-family: inherit;
+    text-decoration: none; display: inline-block; transition: opacity 0.15s;
+  }
+  .btn:hover { opacity: 0.85; }
+  .btn-primary { background: #111; color: #fff; }
+  .btn-full { width: 100%; text-align: center; margin-top: 16px; }
+
+  .empty-state {
+    text-align: center; padding: 80px 0; color: #888;
+  }
+  .empty-state h2 { font-size: 20px; margin-bottom: 12px; color: #111; }
+  .empty-state a { color: #111; font-weight: 600; }
+
+  .banner {
+    padding: 14px 18px; border-radius: 8px; margin-bottom: 24px;
+    font-size: 14px; font-weight: 600;
+  }
+  .banner.success { background: #e6f9ec; color: #1a7a3a; }
+  .banner.canceled { background: #fff3f3; color: #c00; }
+</style>
+</head>
+<body>
+
+<header>
+  <a href="/" class="logo">Storia</a>
+  <div class="nav-right">
+    <a href="/">Continue Shopping</a>
+  </div>
+</header>
+
+<main>
+  <a href="/" class="back">← Back to store</a>
+  <h1>Your Cart</h1>
+
+  <div id="banner" style="display:none"></div>
+  <div id="cart-content"></div>
+</main>
+
+<script>
+  function getCart() { return JSON.parse(localStorage.getItem("cart") || "[]"); }
+  function saveCart(cart) { localStorage.setItem("cart", JSON.stringify(cart)); }
+
+  const params = new URLSearchParams(location.search);
+  if (params.get("success")) {
+    localStorage.removeItem("cart");
+    const b = document.getElementById("banner");
+    b.className = "banner success";
+    b.textContent = "Payment successful! Your order has been placed.";
+    b.style.display = "block";
+  } else if (params.get("canceled")) {
+    const b = document.getElementById("banner");
+    b.className = "banner canceled";
+    b.textContent = "Payment was canceled. Your cart is still saved.";
+    b.style.display = "block";
+  }
+
+  function render() {
+    const cart = getCart();
+    const el = document.getElementById("cart-content");
+
+    if (!cart.length) {
+      el.innerHTML = `
+        <div class="empty-state">
+          <h2>Your cart is empty</h2>
+          <p><a href="/">Browse products →</a></p>
+        </div>`;
+      return;
+    }
+
+    const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
+
+    el.innerHTML = `
+      <table class="cart-table">
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th style="text-align:center">Qty</th>
+            <th style="text-align:right">Subtotal</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          ${cart.map(item => `
+            <tr data-id="${item.id}">
+              <td>
+                <div class="item-name">${item.name}</div>
+                <div class="item-price">$${item.price.toFixed(2)} each</div>
+              </td>
+              <td style="text-align:center">
+                <div class="qty-control" style="justify-content:center">
+                  <button class="qty-btn" onclick="changeQty('${item.id}', -1)">−</button>
+                  <span class="qty-val">${item.qty}</span>
+                  <button class="qty-btn" onclick="changeQty('${item.id}', 1)">+</button>
+                </div>
+              </td>
+              <td>$${(item.price * item.qty).toFixed(2)}</td>
+              <td><button class="remove-btn" onclick="removeItem('${item.id}')">×</button></td>
+            </tr>
+          `).join("")}
+        </tbody>
+      </table>
+      <div class="cart-footer">
+        <div>
+          <div class="total-label">Total</div>
+          <div class="total-amount">$${total.toFixed(2)}</div>
+        </div>
+      </div>
+      <a href="/checkout.html" class="btn btn-primary btn-full">Proceed to Checkout →</a>
+    `;
+  }
+
+  function changeQty(id, delta) {
+    const cart = getCart();
+    const item = cart.find(i => i.id === id);
+    if (!item) return;
+    item.qty = Math.max(1, item.qty + delta);
+    saveCart(cart);
+    render();
+  }
+
+  function removeItem(id) {
+    saveCart(getCart().filter(i => i.id !== id));
+    render();
+  }
+
+  render();
+</script>
+</body>
+</html>

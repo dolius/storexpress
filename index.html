@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Storexpress</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: system-ui, sans-serif; background: #fafafa; color: #111; }
+
+  header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 32px; background: #fff; border-bottom: 1px solid #e5e5e5;
+    position: sticky; top: 0; z-index: 10;
+  }
+  header a { text-decoration: none; color: inherit; }
+  .logo { font-size: 20px; font-weight: 700; letter-spacing: -0.5px; }
+  .nav-right { display: flex; gap: 20px; align-items: center; }
+  .nav-right a { font-size: 14px; color: #555; }
+  .cart-link {
+    background: #111; color: #fff !important;
+    padding: 8px 16px; border-radius: 6px; font-size: 14px; font-weight: 600;
+  }
+
+  main { max-width: 1100px; margin: 48px auto; padding: 0 24px; }
+  h1 { font-size: 28px; font-weight: 700; margin-bottom: 12px; }
+  .intro { color: #666; font-size: 14px; margin-bottom: 32px; }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 24px;
+  }
+
+  .card {
+    background: #fff; border: 1px solid #e5e5e5; border-radius: 10px;
+    overflow: hidden; display: flex; flex-direction: column;
+    transition: box-shadow 0.2s;
+  }
+  .card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+
+  .card-img {
+    width: 100%; aspect-ratio: 4/3; object-fit: cover;
+    background: linear-gradient(135deg, #f5f5f5, #e8e8e8); display: flex; align-items: center; justify-content: center;
+    color: #999; font-size: 13px;
+  }
+  .card-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  .card-body { padding: 18px; flex: 1; display: flex; flex-direction: column; gap: 8px; }
+  .card-name { font-size: 16px; font-weight: 600; }
+  .card-desc { font-size: 13px; color: #666; line-height: 1.5; flex: 1; }
+  .card-price { font-size: 18px; font-weight: 700; }
+  .card-actions { display: flex; gap: 8px; padding: 0 18px 18px; }
+
+  .btn {
+    flex: 1; padding: 10px; border-radius: 6px; font-size: 14px;
+    font-weight: 600; cursor: pointer; border: none; font-family: inherit;
+    text-align: center; text-decoration: none; transition: opacity 0.15s;
+  }
+  .btn:hover { opacity: 0.85; }
+  .btn-primary { background: #111; color: #fff; }
+  .btn-secondary { background: transparent; color: #111; border: 1px solid #ccc; }
+
+  .toast {
+    position: fixed; bottom: 24px; right: 24px;
+    background: #111; color: #fff; padding: 12px 20px;
+    border-radius: 8px; font-size: 14px; font-weight: 600;
+    opacity: 0; transform: translateY(8px);
+    transition: opacity 0.2s, transform 0.2s;
+    pointer-events: none; z-index: 100;
+  }
+  .toast.show { opacity: 1; transform: translateY(0); }
+
+  #loading, #error { text-align: center; padding: 60px; font-size: 15px; }
+  #loading { color: #888; }
+  #error { color: #c00; }
+</style>
+</head>
+<body>
+
+<header>
+  <a href="/" class="logo">Storexpress</a>
+  <div class="nav-right">
+    <a href="/admin.html">Admin</a>
+    <a href="/cart.html" class="cart-link">Cart (<span id="cart-count">0</span>)</a>
+  </div>
+</header>
+
+<main>
+  <h1>All Products</h1>
+  <div class="intro">Static storefront, fast checkout, zero fake mystery infrastructure.</div>
+  <div id="loading">Loading products...</div>
+  <div id="error" style="display:none">Failed to load products.</div>
+  <div class="grid" id="grid" style="display:none"></div>
+</main>
+
+<div class="toast" id="toast">Added to cart</div>
+
+<script>
+  function getCart() {
+    return JSON.parse(localStorage.getItem("cart") || "[]");
+  }
+
+  function saveCart(cart) {
+    localStorage.setItem("cart", JSON.stringify(cart));
+    document.getElementById("cart-count").textContent = cart.reduce((s, i) => s + i.qty, 0);
+  }
+
+  function addToCart(id, name, price) {
+    const cart = getCart();
+    const existing = cart.find(i => i.id === id);
+    if (existing) existing.qty += 1;
+    else cart.push({ id, name, price, qty: 1 });
+    saveCart(cart);
+    showToast(`${name} added to cart`);
+  }
+
+  function showToast(msg) {
+    const t = document.getElementById("toast");
+    t.textContent = msg;
+    t.classList.add("show");
+    setTimeout(() => t.classList.remove("show"), 2200);
+  }
+
+  function renderProducts(products) {
+    const grid = document.getElementById("grid");
+    grid.innerHTML = products.map(p => `
+      <div class="card">
+        <a href="/product.html?id=${encodeURIComponent(p.id)}">
+          <div class="card-img">
+            <img src="${p.image}" alt="${p.name}" onerror="this.remove(); this.parentElement.textContent='No image yet'"/>
+          </div>
+        </a>
+        <div class="card-body">
+          <div class="card-name">${p.name}</div>
+          <div class="card-desc">${p.description}</div>
+          <div class="card-price">$${Number(p.price).toFixed(2)}</div>
+        </div>
+        <div class="card-actions">
+          <a class="btn btn-secondary" href="/product.html?id=${encodeURIComponent(p.id)}">View</a>
+          <button class="btn btn-primary" onclick="addToCart('${p.id}','${p.name.replace(/'/g,"\\'")}',${Number(p.price)})">Add to Cart</button>
+        </div>
+      </div>
+    `).join("");
+    grid.style.display = "grid";
+  }
+
+  (async () => {
+    document.getElementById("cart-count").textContent = getCart().reduce((s, i) => s + i.qty, 0);
+    try {
+      const res = await fetch("/products.json", { cache: "no-store" });
+      if (!res.ok) throw new Error();
+      const products = await res.json();
+      const activeProducts = products.filter(p => p.active !== false);
+      document.getElementById("loading").style.display = "none";
+      renderProducts(activeProducts);
+    } catch {
+      document.getElementById("loading").style.display = "none";
+      document.getElementById("error").style.display = "block";
+    }
+  })();
+</script>
+</body>
+</html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Checkout</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: system-ui, sans-serif; background: #fafafa; color: #111; }
+
+  header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 32px; background: #fff; border-bottom: 1px solid #e5e5e5;
+  }
+  header a { text-decoration: none; color: inherit; }
+  .logo { font-size: 20px; font-weight: 700; letter-spacing: -0.5px; }
+
+  main {
+    max-width: 540px; margin: 64px auto; padding: 0 24px;
+    display: flex; flex-direction: column; align-items: stretch;
+  }
+
+  .back { font-size: 13px; color: #888; text-decoration: none; margin-bottom: 32px; display: inline-block; }
+  .back:hover { color: #111; }
+
+  h1 { font-size: 26px; font-weight: 700; margin-bottom: 28px; }
+
+  .order-summary {
+    background: #fff; border: 1px solid #e5e5e5; border-radius: 10px;
+    padding: 20px 24px; margin-bottom: 24px;
+  }
+  .order-summary h2 { font-size: 14px; font-weight: 700; color: #888; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 16px; }
+  .summary-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; font-size: 14px; }
+  .summary-row + .summary-row { border-top: 1px solid #f0f0f0; }
+  .summary-row .name { font-weight: 500; }
+  .summary-row .qty  { color: #888; font-size: 12px; }
+  .summary-total {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-top: 16px; padding-top: 16px; border-top: 2px solid #111;
+    font-weight: 700; font-size: 18px;
+  }
+
+  .btn {
+    width: 100%; padding: 15px; border-radius: 8px; font-size: 16px;
+    font-weight: 700; cursor: pointer; border: none; font-family: inherit;
+    transition: opacity 0.15s; display: flex; align-items: center;
+    justify-content: center; gap: 10px;
+  }
+  .btn:hover:not(:disabled) { opacity: 0.88; }
+  .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+  .btn-stripe { background: #635bff; color: #fff; }
+
+  .secure-note { font-size: 12px; color: #aaa; text-align: center; margin-top: 12px; }
+
+  .spinner {
+    display: none; width: 16px; height: 16px;
+    border: 2px solid rgba(255,255,255,0.3);
+    border-top-color: white; border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  #error-msg {
+    background: #fff3f3; color: #c00; border: 1px solid #fcc;
+    border-radius: 8px; padding: 14px 18px; font-size: 14px;
+    margin-bottom: 16px; display: none;
+  }
+
+  .empty-state { text-align: center; padding: 60px 0; color: #888; }
+  .empty-state a { color: #111; font-weight: 600; }
+</style>
+</head>
+<body>
+
+<header>
+  <a href="/" class="logo">Storia</a>
+  <a href="/cart.html" style="font-size:14px; color:#555; text-decoration:none;">← Back to cart</a>
+</header>
+
+<main>
+  <h1>Checkout</h1>
+
+  <div id="error-msg"></div>
+  <div id="content"></div>
+</main>
+
+<script>
+  function getCart() { return JSON.parse(localStorage.getItem("cart") || "[]"); }
+
+  const cart = getCart();
+  const el = document.getElementById("content");
+
+  if (!cart.length) {
+    el.innerHTML = `
+      <div class="empty-state">
+        <p>Your cart is empty. <a href="/">Go shopping →</a></p>
+      </div>`;
+  } else {
+    const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
+    el.innerHTML = `
+      <div class="order-summary">
+        <h2>Order Summary</h2>
+        ${cart.map(item => `
+          <div class="summary-row">
+            <div>
+              <span class="name">${item.name}</span>
+              <span class="qty"> × ${item.qty}</span>
+            </div>
+            <div>$${(item.price * item.qty).toFixed(2)}</div>
+          </div>
+        `).join("")}
+        <div class="summary-total">
+          <span>Total</span>
+          <span>$${total.toFixed(2)}</span>
+        </div>
+      </div>
+      <button class="btn btn-stripe" id="pay-btn" onclick="startCheckout()">
+        <span class="spinner" id="spinner"></span>
+        <span id="btn-label">Pay with Stripe →</span>
+      </button>
+      <p class="secure-note">🔒 Secure payment via Stripe. You'll be redirected to complete your order.</p>
+    `;
+  }
+
+  async function startCheckout() {
+    const btn = document.getElementById("pay-btn");
+    const spinner = document.getElementById("spinner");
+    const btnLabel = document.getElementById("btn-label");
+    const errorMsg = document.getElementById("error-msg");
+
+    btn.disabled = true;
+    spinner.style.display = "block";
+    btnLabel.textContent = "Redirecting...";
+    errorMsg.style.display = "none";
+
+    try {
+      const res = await fetch("/api/create-checkout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ items: getCart() })
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) throw new Error(data.error || "Checkout failed");
+      if (!data.url) throw new Error("No checkout URL returned");
+
+      window.location.href = data.url;
+    } catch (err) {
+      errorMsg.textContent = `Error: ${err.message}`;
+      errorMsg.style.display = "block";
+      btn.disabled = false;
+      spinner.style.display = "none";
+      btnLabel.textContent = "Pay with Stripe →";
+    }
+  }
+</script>
+</body>
+</html>

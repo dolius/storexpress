@@ -1,0 +1,43 @@
+[
+  {
+    "id": "prod_001",
+    "name": "Ceramic Pour-Over Set",
+    "price": 48.00,
+    "image": "/img/pourover.jpg",
+    "description": "Hand-thrown ceramic pour-over dripper with matching mug. Each piece is unique. Holds 400ml. Dishwasher safe.",
+    "active": true
+  },
+  {
+    "id": "prod_002",
+    "name": "Linen Tote Bag",
+    "price": 32.00,
+    "image": "/img/tote.jpg",
+    "description": "Heavy-duty natural linen tote with reinforced handles. 15L capacity. Great for groceries, books, or the beach.",
+    "active": true
+  },
+  {
+    "id": "prod_003",
+    "name": "Beeswax Candle Trio",
+    "price": 27.00,
+    "image": "/img/candles.jpg",
+    "description": "Set of three hand-poured beeswax candles in amber, eucalyptus, and cedar scents. Burns 40+ hours each.",
+    "active": true
+  }
+  ,
+  {
+    "id": "prod_test_1",
+    "name": "Test Product $1",
+    "price": 1.00,
+    "image": "/img/test1.jpg",
+    "description": "Test product for one dollar.",
+    "active": true
+  },
+  {
+    "id": "prod_test_2",
+    "name": "Test Product $2",
+    "price": 2.00,
+    "image": "/img/test2.jpg",
+    "description": "Test product for two dollars.",
+    "active": true
+  }
+]
