@@ -1,7 +1,4 @@
 {
   "name": "storexpress",
-  "private": true,
-  "dependencies": {
-    "stripe": "^18.3.0"
-  }
+  "private": true
 }
