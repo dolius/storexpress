@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+  <rect width="800" height="600" fill="#101820"/>
+  <circle cx="210" cy="200" r="54" fill="#e5f05c"/>
+  <circle cx="410" cy="300" r="70" fill="#fff"/>
+  <circle cx="610" cy="200" r="54" fill="#e5f05c"/>
+  <path d="M260 210 350 275M470 275 560 210M410 370v80" stroke="#9aa4b2" stroke-width="18" stroke-linecap="round"/>
+  <text x="90" y="115" font-family="Arial, sans-serif" font-size="42" font-weight="800" fill="#fff">Data Center</text>
+  <text x="90" y="170" font-family="Arial, sans-serif" font-size="42" font-weight="800" fill="#fff">Money Map</text>
+  <text x="90" y="510" font-family="Arial, sans-serif" font-size="24" fill="#d8dde4">Infrastructure opportunity research</text>
+</svg>

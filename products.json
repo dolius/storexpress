@@ -1,8 +1,61 @@
 [
   {
+    "id": "pdf_test_product",
+    "name": "AI Magician Playbook",
+    "price": 1,
+    "image": "/img/ai-magician-playbook.png",
+    "download": "/downloads/AI-Magician-Playbook.pdf",
+    "description": "A real $1 PDF test product about using AI with sharper framing, prompt structure, and practical output rituals. Buy it to verify live checkout, receipt, secure retrieval link, and download delivery.",
+    "active": true
+  },
+  {
+    "id": "chatgpt_seo_playbook",
+    "name": "The ChatGPT SEO Playbook",
+    "price": 9,
+    "image": "/img/chatgpt-seo-playbook.png",
+    "download": "/downloads/The-ChatGPT-SEO-Playbook.pdf",
+    "description": "A practical PDF playbook for using ChatGPT to plan, structure, and improve SEO content workflows. Instant digital download.",
+    "active": true
+  },
+  {
+    "id": "content_templates_chatgpt",
+    "name": "Content Templates ChatGPT Understands",
+    "price": 19,
+    "image": "/img/content-templates.png",
+    "download": "/downloads/Content-Templates-That-ChatGPT-Can-Understand.pdf",
+    "description": "A PDF template pack for turning rough ideas into structured prompts, briefs, articles, landing pages, and reusable content systems. Instant digital download.",
+    "active": true
+  },
+  {
+    "id": "speed_funnel_system",
+    "name": "Speed Funnel System",
+    "price": 29,
+    "image": "/img/speed-funnel-system.png",
+    "download": "/downloads/SpeedFunnelSystem.pdf",
+    "description": "A compact PDF system for building faster sales funnels: offer structure, page flow, traffic assumptions, and conversion checkpoints. Instant digital download.",
+    "active": true
+  },
+  {
+    "id": "data_center_money_map",
+    "name": "The Real Data Center Money Map",
+    "price": 29,
+    "image": "/img/data-center-money-map.png",
+    "download": "/downloads/The-Real-Data-Center-Money-Map.pdf",
+    "description": "A research-style PDF map of commercial opportunities around data centers, infrastructure demand, service layers, and adjacent markets. Instant digital download.",
+    "active": true
+  },
+  {
+    "id": "storexpress_launch_setup",
+    "name": "Storexpress Launch Setup",
+    "price": 299,
+    "image": "/img/storexpress-launch.jpg",
+    "description": "A checkout-ready static storefront setup for one small catalog: product structure, cart flow, Stripe Checkout handoff, and deployment guidance. Best for makers, local sellers, and service providers who need a simple store online fast.",
+    "active": true
+  },
+  {
     "id": "prod_001",
     "name": "Ceramic Pour-Over Set",
-    "price": 48.00,
+    "price": 48,
     "image": "/img/pourover.jpg",
     "description": "Hand-thrown ceramic pour-over dripper with matching mug. Each piece is unique. Holds 400ml. Dishwasher safe.",
     "active": true
@@ -10,7 +63,7 @@
   {
     "id": "prod_002",
     "name": "Linen Tote Bag",
-    "price": 32.00,
+    "price": 32,
     "image": "/img/tote.jpg",
     "description": "Heavy-duty natural linen tote with reinforced handles. 15L capacity. Great for groceries, books, or the beach.",
     "active": true
@@ -18,26 +71,9 @@
   {
     "id": "prod_003",
     "name": "Beeswax Candle Trio",
-    "price": 27.00,
+    "price": 27,
     "image": "/img/candles.jpg",
     "description": "Set of three hand-poured beeswax candles in amber, eucalyptus, and cedar scents. Burns 40+ hours each.",
-    "active": true
-  }
-  ,
-  {
-    "id": "prod_test_1",
-    "name": "Test Product $1",
-    "price": 1.00,
-    "image": "/img/test1.jpg",
-    "description": "Test product for one dollar.",
-    "active": true
-  },
-  {
-    "id": "prod_test_2",
-    "name": "Test Product $2",
-    "price": 2.00,
-    "image": "/img/test2.jpg",
-    "description": "Test product for two dollars.",
     "active": true
   }
 ]

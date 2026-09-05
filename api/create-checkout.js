@@ -4,9 +4,13 @@ const path = require('path');
 async function createStripeCheckout(stripeKey, origin, items) {
   const params = new URLSearchParams();
   params.set('mode', 'payment');
-  params.set('success_url', `${origin}/cart.html?success=1`);
+  params.set('success_url', `${origin}/receipt.html?session_id={CHECKOUT_SESSION_ID}`);
   params.set('cancel_url', `${origin}/cart.html?canceled=1`);
   params.append('payment_method_types[]', 'card');
+  params.set('billing_address_collection', 'auto');
+  params.set('allow_promotion_codes', 'true');
+  params.set('metadata[store]', 'storexpress');
+  params.set('metadata[product_ids]', items.map(item => item.id).join(','));
 
   items.forEach((item, index) => {
     params.set(`line_items[${index}][price_data][currency]`, 'usd');
@@ -58,6 +62,7 @@ module.exports = async (req, res) => {
         return res.status(400).json({ error: `Unknown product: ${item.id}` });
       }
       normalizedItems.push({
+        id: product.id,
         name: product.name,
         price: Number(product.price),
         qty: Math.max(1, parseInt(item.qty || 1, 10))

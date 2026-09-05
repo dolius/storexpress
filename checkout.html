@@ -134,6 +134,7 @@
     errorMsg.style.display = "none";
 
     try {
+      localStorage.setItem("pendingCheckoutCart", JSON.stringify(getCart()));
       const res = await fetch("/api/create-checkout", {
         method: "POST",
         headers: { "Content-Type": "application/json" },

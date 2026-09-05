@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Receipt | Storexpress</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: system-ui, sans-serif; background: #fafafa; color: #111; }
+  header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 32px; background: #fff; border-bottom: 1px solid #e5e5e5;
+  }
+  header a { text-decoration: none; color: inherit; }
+  .logo { font-size: 20px; font-weight: 700; letter-spacing: -0.5px; }
+  main { max-width: 720px; margin: 56px auto; padding: 0 24px; }
+  h1 { font-size: 30px; margin-bottom: 12px; }
+  .lead { color: #555; line-height: 1.6; margin-bottom: 24px; }
+  .panel {
+    background: #fff; border: 1px solid #e5e5e5; border-radius: 10px;
+    padding: 22px; margin-bottom: 18px;
+  }
+  .row { display: flex; justify-content: space-between; gap: 20px; padding: 10px 0; border-top: 1px solid #f0f0f0; }
+  .row:first-child { border-top: 0; }
+  .row span:first-child { color: #777; }
+  .row span:last-child { font-weight: 700; text-align: right; }
+  .download-link {
+    display: flex; justify-content: space-between; align-items: center; gap: 14px;
+    min-height: 52px; margin-top: 12px; padding: 0 18px; border-radius: 8px;
+    background: #111; color: #fff; text-decoration: none; font-weight: 800;
+  }
+  .download-link:first-of-type { margin-top: 0; }
+  .download-link span { color: #e5f05c; font-size: 13px; font-weight: 800; }
+  .copy-row { display: flex; gap: 10px; margin-top: 12px; }
+  input {
+    flex: 1; min-width: 0; padding: 11px 12px; border: 1px solid #ccc;
+    border-radius: 6px; font: inherit; color: #333;
+  }
+  button, .btn {
+    border: 0; border-radius: 6px; padding: 11px 14px; background: #111;
+    color: #fff; font-weight: 750; cursor: pointer; text-decoration: none; display: inline-block;
+  }
+  .muted { color: #777; font-size: 13px; line-height: 1.5; }
+  .error { background: #fff3f3; border-color: #fcc; color: #a40000; }
+  .success { background: #effbea; border-color: #c8ecc0; color: #17652d; }
+  @media (max-width: 620px) {
+    header { padding: 14px 18px; }
+    .copy-row, .row { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <a href="/" class="logo">Storexpress</a>
+  <a href="/" style="font-size:14px; color:#555;">Back to store</a>
+</header>
+
+<main>
+  <h1>Receipt and downloads</h1>
+  <p class="lead">Your payment is verified through Stripe before downloads are shown.</p>
+  <div id="status" class="panel">Checking payment...</div>
+  <div id="receipt"></div>
+</main>
+
+<script>
+  const params = new URLSearchParams(location.search);
+  const sessionId = params.get("session_id");
+  const statusEl = document.getElementById("status");
+  const receiptEl = document.getElementById("receipt");
+
+  function formatMoney(cents, currency) {
+    return new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: (currency || "usd").toUpperCase()
+    }).format((cents || 0) / 100);
+  }
+
+  function copyReceiptLink() {
+    navigator.clipboard.writeText(location.href);
+    const button = document.getElementById("copy-link");
+    button.textContent = "Copied";
+    setTimeout(() => { button.textContent = "Copy link"; }, 1200);
+  }
+
+  async function loadReceipt() {
+    if (!sessionId) {
+      statusEl.className = "panel error";
+      statusEl.textContent = "Missing checkout session. Use the receipt link from Stripe or your checkout return page.";
+      return;
+    }
+
+    try {
+      const res = await fetch(`/api/verify-session?session_id=${encodeURIComponent(sessionId)}`, { cache: "no-store" });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "Unable to verify payment");
+
+      localStorage.removeItem("cart");
+      localStorage.removeItem("pendingCheckoutCart");
+      statusEl.className = "panel success";
+      statusEl.textContent = "Payment verified. Your downloads are ready.";
+
+      receiptEl.innerHTML = `
+        <section class="panel">
+          <div class="row"><span>Receipt</span><span>${data.id}</span></div>
+          <div class="row"><span>Paid</span><span>${formatMoney(data.amount_total, data.currency)}</span></div>
+          <div class="row"><span>Email</span><span>${data.customer_email || "Captured by Stripe"}</span></div>
+        </section>
+        <section class="panel">
+      ${data.downloads.length ? data.downloads.map(file => `
+            <a class="download-link" href="${file.url}?session_id=${encodeURIComponent(sessionId)}" download>
+              ${file.name}
+              <span>Download PDF</span>
+            </a>
+          `).join("") : `<p>No digital downloads were attached to this order.</p>`}
+        </section>
+        <section class="panel">
+          <p class="muted">Save this receipt link. It can reopen this verified download page later.</p>
+          <div class="copy-row">
+            <input value="${location.href}" readonly aria-label="Receipt link"/>
+            <button id="copy-link" onclick="copyReceiptLink()">Copy link</button>
+          </div>
+        </section>
+      `;
+    } catch (error) {
+      statusEl.className = "panel error";
+      statusEl.textContent = error.message;
+    }
+  }
+
+  loadReceipt();
+</script>
+</body>
+</html>

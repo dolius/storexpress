@@ -84,6 +84,18 @@
   }
   .banner.success { background: #e6f9ec; color: #1a7a3a; }
   .banner.canceled { background: #fff3f3; color: #c00; }
+  .downloads {
+    background: #fff; border: 1px solid #e5e5e5; border-radius: 10px;
+    padding: 20px; margin-bottom: 24px;
+  }
+  .downloads h2 { font-size: 18px; margin-bottom: 10px; }
+  .downloads p { color: #666; font-size: 14px; margin-bottom: 14px; line-height: 1.5; }
+  .download-link {
+    display: flex; justify-content: space-between; gap: 12px; align-items: center;
+    padding: 12px 0; border-top: 1px solid #f0f0f0; color: #111;
+    text-decoration: none; font-weight: 700;
+  }
+  .download-link span { color: #666; font-size: 13px; font-weight: 600; }
 </style>
 </head>
 <body>
@@ -109,16 +121,56 @@
 
   const params = new URLSearchParams(location.search);
   if (params.get("success")) {
+    const purchased = JSON.parse(localStorage.getItem("pendingCheckoutCart") || "[]");
     localStorage.removeItem("cart");
+    localStorage.removeItem("pendingCheckoutCart");
     const b = document.getElementById("banner");
     b.className = "banner success";
     b.textContent = "Payment successful! Your order has been placed.";
     b.style.display = "block";
+    renderDownloads(purchased);
   } else if (params.get("canceled")) {
     const b = document.getElementById("banner");
     b.className = "banner canceled";
     b.textContent = "Payment was canceled. Your cart is still saved.";
     b.style.display = "block";
+  }
+
+  const downloads = {
+    chatgpt_seo_playbook: {
+      name: "The ChatGPT SEO Playbook",
+      url: "/downloads/The-ChatGPT-SEO-Playbook.pdf"
+    },
+    content_templates_chatgpt: {
+      name: "Content Templates ChatGPT Understands",
+      url: "/downloads/Content-Templates-That-ChatGPT-Can-Understand.pdf"
+    },
+    speed_funnel_system: {
+      name: "Speed Funnel System",
+      url: "/downloads/SpeedFunnelSystem.pdf"
+    },
+    data_center_money_map: {
+      name: "The Real Data Center Money Map",
+      url: "/downloads/The-Real-Data-Center-Money-Map.pdf"
+    }
+  };
+
+  function renderDownloads(items) {
+    const files = items.map(item => downloads[item.id]).filter(Boolean);
+    if (!files.length) return;
+    const panel = document.createElement("div");
+    panel.className = "downloads";
+    panel.innerHTML = `
+      <h2>Your downloads</h2>
+      <p>Save these files now. The links are shown after successful payment on this device.</p>
+      ${files.map(file => `
+        <a class="download-link" href="${file.url}" download>
+          ${file.name}
+          <span>Download PDF</span>
+        </a>
+      `).join("")}
+    `;
+    document.getElementById("banner").after(panel);
   }
 
   function render() {

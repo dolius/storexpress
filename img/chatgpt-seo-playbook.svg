@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+  <rect width="800" height="600" fill="#111"/>
+  <rect x="70" y="70" width="660" height="460" rx="18" fill="#f4f4ef"/>
+  <text x="105" y="160" font-family="Arial, sans-serif" font-size="46" font-weight="800" fill="#111">ChatGPT SEO</text>
+  <text x="105" y="220" font-family="Arial, sans-serif" font-size="46" font-weight="800" fill="#111">Playbook</text>
+  <rect x="105" y="280" width="220" height="12" fill="#e5f05c"/>
+  <text x="105" y="350" font-family="Arial, sans-serif" font-size="24" fill="#444">Plan content. Build pages.</text>
+  <text x="105" y="386" font-family="Arial, sans-serif" font-size="24" fill="#444">Improve search workflows.</text>
+</svg>

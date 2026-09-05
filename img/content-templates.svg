@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+  <rect width="800" height="600" fill="#f7f7f4"/>
+  <rect x="78" y="64" width="644" height="472" rx="18" fill="#182033"/>
+  <text x="118" y="152" font-family="Arial, sans-serif" font-size="42" font-weight="800" fill="#fff">Content Templates</text>
+  <text x="118" y="208" font-family="Arial, sans-serif" font-size="42" font-weight="800" fill="#fff">ChatGPT Understands</text>
+  <rect x="118" y="280" width="500" height="24" rx="8" fill="#fff"/>
+  <rect x="118" y="326" width="430" height="24" rx="8" fill="#e5f05c"/>
+  <rect x="118" y="372" width="530" height="24" rx="8" fill="#fff"/>
+  <text x="118" y="456" font-family="Arial, sans-serif" font-size="24" fill="#d9dde8">Reusable prompts and briefs</text>
+</svg>

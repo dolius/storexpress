@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+  <rect width="800" height="600" fill="#fff"/>
+  <path d="M120 95h560L460 345v120H340V345z" fill="#111"/>
+  <text x="135" y="170" font-family="Arial, sans-serif" font-size="43" font-weight="800" fill="#e5f05c">Speed Funnel</text>
+  <text x="214" y="230" font-family="Arial, sans-serif" font-size="43" font-weight="800" fill="#fff">System</text>
+  <text x="190" y="520" font-family="Arial, sans-serif" font-size="24" fill="#444">Offer to checkout flow</text>
+</svg>

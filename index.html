@@ -23,8 +23,16 @@
   }
 
   main { max-width: 1100px; margin: 48px auto; padding: 0 24px; }
-  h1 { font-size: 28px; font-weight: 700; margin-bottom: 12px; }
-  .intro { color: #666; font-size: 14px; margin-bottom: 32px; }
+  h1 { font-size: 34px; font-weight: 800; margin-bottom: 12px; letter-spacing: 0; }
+  .intro { color: #555; font-size: 16px; line-height: 1.6; margin-bottom: 22px; max-width: 760px; }
+  .offer-strip {
+    background: #fff; border: 1px solid #e1e1e1; border-radius: 8px;
+    padding: 18px 20px; margin-bottom: 30px; display: flex;
+    justify-content: space-between; gap: 18px; align-items: center;
+  }
+  .offer-strip strong { display: block; font-size: 15px; margin-bottom: 3px; }
+  .offer-strip span { color: #666; font-size: 13px; line-height: 1.5; }
+  .offer-strip .btn { flex: 0 0 auto; min-width: 180px; }
 
   .grid {
     display: grid;
@@ -74,6 +82,11 @@
   #loading, #error { text-align: center; padding: 60px; font-size: 15px; }
   #loading { color: #888; }
   #error { color: #c00; }
+  @media (max-width: 680px) {
+    header { padding: 14px 18px; }
+    .offer-strip { align-items: stretch; flex-direction: column; }
+    .offer-strip .btn { width: 100%; }
+  }
 </style>
 </head>
 <body>
@@ -87,8 +100,15 @@
 </header>
 
 <main>
-  <h1>All Products</h1>
-  <div class="intro">Static storefront, fast checkout, zero fake mystery infrastructure.</div>
+  <h1>Practical digital guides, instant checkout</h1>
+  <div class="intro">Storexpress is now live for real payments. Start with focused PDF guides for SEO, funnels, AI-ready content templates, and infrastructure opportunity research.</div>
+  <div class="offer-strip">
+    <div>
+      <strong>Instant-download info products</strong>
+      <span>Buy a guide, complete Stripe Checkout, and return to the success page for the PDF download link.</span>
+    </div>
+    <a class="btn btn-primary" href="/product.html?id=content_templates_chatgpt">View $19 Template Pack</a>
+  </div>
   <div id="loading">Loading products...</div>
   <div id="error" style="display:none">Failed to load products.</div>
   <div class="grid" id="grid" style="display:none"></div>
