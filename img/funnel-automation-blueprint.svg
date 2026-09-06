@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900">
+  <rect width="1200" height="900" fill="#f6f4f0"/>
+  <rect x="86" y="74" width="1028" height="752" fill="#fffdfa" stroke="#111" stroke-width="4"/>
+  <path d="M140 178h920M140 308h920M140 438h920M140 568h920M140 698h920M448 118v656M758 118v656" stroke="#ddd6ca" stroke-width="3"/>
+  <path d="M220 256h216l-66 128h-84zM492 256h216l-66 128h-84zM764 256h216l-66 128h-84z" fill="none" stroke="#111" stroke-width="12" stroke-linejoin="round"/>
+  <path d="M426 320h68M698 320h68" stroke="#ffcc00" stroke-width="16"/>
+  <path d="M304 438v110h592V438" fill="none" stroke="#111" stroke-width="12"/>
+  <circle cx="304" cy="596" r="34" fill="#ffcc00" stroke="#111" stroke-width="8"/>
+  <circle cx="896" cy="596" r="34" fill="#ffcc00" stroke="#111" stroke-width="8"/>
+  <text x="140" y="142" font-family="Helvetica, Arial, sans-serif" font-size="28" font-weight="700" fill="#111">DIGITAL REVENUE OPERATIONS</text>
+  <text x="140" y="668" font-family="Helvetica, Arial, sans-serif" font-size="82" font-weight="900" fill="#111">FUNNEL</text>
+  <text x="140" y="744" font-family="Helvetica, Arial, sans-serif" font-size="66" font-weight="900" fill="#111">AUTOMATION</text>
+  <text x="690" y="744" font-family="Helvetica, Arial, sans-serif" font-size="34" font-weight="900" fill="#111">BLUEPRINT</text>
+</svg>

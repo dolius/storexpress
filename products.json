@@ -45,35 +45,39 @@
     "active": true
   },
   {
-    "id": "storexpress_launch_setup",
-    "name": "Storexpress Launch Setup",
-    "price": 299,
-    "image": "/img/storexpress-launch.jpg",
-    "description": "A checkout-ready static storefront setup for one small catalog: product structure, cart flow, Stripe Checkout handoff, and deployment guidance. Best for makers, local sellers, and service providers who need a simple store online fast.",
+    "id": "vibe_ai_field_guide",
+    "name": "Vibe AI Field Guide",
+    "price": 1200,
+    "image": "/img/vibe-ai-field-guide.svg",
+    "download": "/downloads/VibeAI.pdf",
+    "description": "A practical PDF guide for working with AI as a creative and operational partner: prompt framing, iteration loops, useful outputs, and everyday AI workflows. Instant digital download.",
     "active": true
   },
   {
-    "id": "prod_001",
-    "name": "Ceramic Pour-Over Set",
-    "price": 48,
-    "image": "/img/pourover.jpg",
-    "description": "Hand-thrown ceramic pour-over dripper with matching mug. Each piece is unique. Holds 400ml. Dishwasher safe.",
+    "id": "promptcraft_playbook",
+    "name": "Promptcraft Playbook",
+    "price": 1200,
+    "image": "/img/promptcraft-playbook.svg",
+    "download": "/downloads/Promptcraft.pdf",
+    "description": "A focused PDF product for turning vague asks into strong AI prompts, clean briefs, and repeatable output systems. Instant digital download.",
     "active": true
   },
   {
-    "id": "prod_002",
-    "name": "Linen Tote Bag",
-    "price": 32,
-    "image": "/img/tote.jpg",
-    "description": "Heavy-duty natural linen tote with reinforced handles. 15L capacity. Great for groceries, books, or the beach.",
+    "id": "funnel_automation_blueprint",
+    "name": "Funnel Automation Blueprint",
+    "price": 1900,
+    "image": "/img/funnel-automation-blueprint.svg",
+    "download": "/downloads/Funnel-Automation-Blueprint.pdf",
+    "description": "A compact digital transformation blueprint for connecting offers, pages, follow-up, and automation into a faster revenue workflow. Instant digital download.",
     "active": true
   },
   {
-    "id": "prod_003",
-    "name": "Beeswax Candle Trio",
-    "price": 27,
-    "image": "/img/candles.jpg",
-    "description": "Set of three hand-poured beeswax candles in amber, eucalyptus, and cedar scents. Burns 40+ hours each.",
+    "id": "rank_revival_system",
+    "name": "Rank Revival System",
+    "price": 2900,
+    "image": "/img/rank-revival-system.svg",
+    "download": "/downloads/Rank-Revival-System.pdf",
+    "description": "A PDF system for reviving search visibility with audits, content prioritization, AI-assisted improvements, and ranking recovery workflows. Instant digital download.",
     "active": true
   }
 ]

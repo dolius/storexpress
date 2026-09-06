@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900">
+  <rect width="1200" height="900" fill="#f2f5f7"/>
+  <rect x="80" y="70" width="1040" height="760" fill="#fbfcfb" stroke="#111" stroke-width="4"/>
+  <path d="M136 176h928M136 306h928M136 436h928M136 566h928M136 696h928M324 112v660M594 112v660M864 112v660" stroke="#cbd4da" stroke-width="3"/>
+  <path d="M220 548l132-158 124 68 154-194 132 112 210-220" fill="none" stroke="#111" stroke-width="14" stroke-linecap="square" stroke-linejoin="round"/>
+  <path d="M944 156h56v56" fill="none" stroke="#111" stroke-width="14"/>
+  <circle cx="352" cy="390" r="24" fill="#00a676" stroke="#111" stroke-width="7"/>
+  <circle cx="630" cy="264" r="24" fill="#00a676" stroke="#111" stroke-width="7"/>
+  <circle cx="762" cy="376" r="24" fill="#00a676" stroke="#111" stroke-width="7"/>
+  <text x="136" y="138" font-family="Helvetica, Arial, sans-serif" font-size="28" font-weight="700" fill="#111">SEARCH GROWTH SYSTEM</text>
+  <text x="136" y="682" font-family="Helvetica, Arial, sans-serif" font-size="86" font-weight="900" fill="#111">RANK REVIVAL</text>
+  <text x="136" y="758" font-family="Helvetica, Arial, sans-serif" font-size="56" font-weight="900" fill="#111">SYSTEM</text>
+  <text x="706" y="758" font-family="Helvetica, Arial, sans-serif" font-size="28" font-weight="700" fill="#111">SEO RECOVERY / CONTENT MAPS / ACTION PLAN</text>
+</svg>

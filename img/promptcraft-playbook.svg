@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900">
+  <rect width="1200" height="900" fill="#eef3f0"/>
+  <rect x="72" y="72" width="1056" height="756" fill="#fbfbf7" stroke="#111" stroke-width="4"/>
+  <path d="M132 182h936M132 310h936M132 438h936M132 566h936M132 694h936M360 110v662M706 110v662" stroke="#c7d5cf" stroke-width="3"/>
+  <rect x="142" y="228" width="260" height="170" fill="none" stroke="#111" stroke-width="10"/>
+  <path d="M188 286h168M188 336h108M470 256h304M470 318h220M470 380h168" stroke="#111" stroke-width="13" stroke-linecap="square"/>
+  <path d="M850 250l84 84-84 84M970 250l-84 84 84 84" fill="none" stroke="#1677ff" stroke-width="14" stroke-linecap="square"/>
+  <text x="132" y="140" font-family="Helvetica, Arial, sans-serif" font-size="28" font-weight="700" fill="#111">AI COMMUNICATION SYSTEM</text>
+  <text x="132" y="682" font-family="Helvetica, Arial, sans-serif" font-size="94" font-weight="900" fill="#111">PROMPTCRAFT</text>
+  <text x="132" y="754" font-family="Helvetica, Arial, sans-serif" font-size="48" font-weight="900" fill="#111">PLAYBOOK</text>
+  <text x="132" y="794" font-family="Helvetica, Arial, sans-serif" font-size="24" font-weight="700" fill="#111">BETTER BRIEFS. CLEANER OUTPUTS. FASTER ITERATION.</text>
+</svg>

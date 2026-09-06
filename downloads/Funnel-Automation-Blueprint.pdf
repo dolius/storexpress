@@ -1,0 +1,121 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Count 2 /Kids [3 0 R 4 0 R] >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 5 0 R /Resources << /Font << /F1 7 0 R >> >> >>
+endobj
+4 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 6 0 R /Resources << /Font << /F1 7 0 R >> >> >>
+endobj
+5 0 obj
+<< /Length 833 >>
+stream
+BT
+/F1 24 Tf
+72 736 Td
+(Funnel Automation Blueprint) Tj
+/F1 12 Tf
+0 -36 Td
+(A practical guide to automation of funnels and downloadable funnel systems.) Tj
+0 -28 Td
+(This PDF is delivered only after backend payment capture confirms a paid order.) Tj
+0 -42 Td
+/F1 16 Tf
+(1. Stack Used) Tj
+/F1 12 Tf
+0 -24 Td
+(Frontend: static HTML, CSS, and JavaScript for fast pages and clean editing.) Tj
+0 -20 Td
+(Backend: Python HTTP server for lead capture, order creation, order capture,) Tj
+0 -20 Td
+(and tokenized delivery.) Tj
+0 -20 Td
+(Payments: PayPal checkout with server-side verification.) Tj
+0 -20 Td
+(Fulfillment: protected file download after order status is paid.) Tj
+0 -42 Td
+/F1 16 Tf
+(2. Protocol) Tj
+/F1 12 Tf
+0 -24 Td
+(Step 1: clarify the promise on the lander.) Tj
+0 -20 Td
+(Step 2: move the visitor into checkout with a single next action.) Tj
+0 -20 Td
+(Step 3: collect email and name before payment approval.) Tj
+0 -20 Td
+(Step 4: create the PayPal order on the server.) Tj
+0 -20 Td
+(Step 5: capture the PayPal order on approval.) Tj
+0 -20 Td
+(Step 6: issue download access only after paid confirmation.) Tj
+ET
+endstream
+endobj
+6 0 obj
+<< /Length 915 >>
+stream
+BT
+/F1 16 Tf
+72 736 Td
+(3. SOP) Tj
+/F1 12 Tf
+0 -28 Td
+(Pre-launch checklist:) Tj
+0 -20 Td
+(- Test headline, CTA, and checkout routing.) Tj
+0 -20 Td
+(- Verify lead capture writes to storage.) Tj
+0 -20 Td
+(- Create and capture a sandbox payment.) Tj
+0 -20 Td
+(- Confirm thank-you redirect and token generation.) Tj
+0 -20 Td
+(- Confirm PDF download is blocked before payment and available after payment.) Tj
+0 -42 Td
+/F1 16 Tf
+(4. Operating Notes) Tj
+/F1 12 Tf
+0 -24 Td
+(Keep the funnel narrow. One promise, one offer, one CTA path.) Tj
+0 -20 Td
+(Do not send buyers to an unverified file URL.) Tj
+0 -20 Td
+(Store local records for leads and orders so support is traceable.) Tj
+0 -20 Td
+(Switch to live PayPal credentials only after repeated sandbox checks.) Tj
+0 -42 Td
+/F1 16 Tf
+(5. Delivery Model) Tj
+/F1 12 Tf
+0 -24 Td
+(Paid order -> local paid status -> tokenized thank-you page -> file download.) Tj
+0 -20 Td
+(That sequence is the control point that keeps the asset gated correctly.) Tj
+0 -36 Td
+(End of blueprint.) Tj
+ET
+endstream
+endobj
+7 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+xref
+0 8
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000117 00000 n 
+0000000243 00000 n 
+0000000369 00000 n 
+0000001253 00000 n 
+0000002216 00000 n 
+trailer
+<< /Size 8 /Root 1 0 R >>
+startxref
+2286
+%%EOF

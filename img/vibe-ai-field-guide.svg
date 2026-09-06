@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900">
+  <rect width="1200" height="900" fill="#f4f1e8"/>
+  <rect x="84" y="76" width="1032" height="748" fill="#f9f7ef" stroke="#111" stroke-width="4"/>
+  <path d="M126 184h948M126 320h948M126 456h948M126 592h948M126 728h948M300 112v676M640 112v676M974 112v676" stroke="#d6d0bf" stroke-width="3"/>
+  <circle cx="306" cy="376" r="94" fill="none" stroke="#111" stroke-width="10"/>
+  <circle cx="306" cy="376" r="34" fill="#f04b2f"/>
+  <path d="M540 268c72-52 170-44 230 18 42 43 58 102 44 158-19 78-91 130-177 121-69-7-122-53-143-112" fill="none" stroke="#111" stroke-width="14" stroke-linecap="round"/>
+  <path d="M731 206l78 80-102 34" fill="none" stroke="#111" stroke-width="14" stroke-linecap="square"/>
+  <text x="126" y="135" font-family="Helvetica, Arial, sans-serif" font-size="28" font-weight="700" fill="#111">STOREXPRESS DIGITAL PRODUCT</text>
+  <text x="126" y="690" font-family="Helvetica, Arial, sans-serif" font-size="112" font-weight="900" fill="#111">VIBE AI</text>
+  <text x="126" y="766" font-family="Helvetica, Arial, sans-serif" font-size="52" font-weight="900" fill="#111">FIELD GUIDE</text>
+  <text x="770" y="766" font-family="Helvetica, Arial, sans-serif" font-size="28" font-weight="700" fill="#111">PROMPTS / WORKFLOWS / OUTPUTS</text>
+</svg>
