@@ -91,7 +91,16 @@
 <div class="toast" id="toast"></div>
 <script>
   let currentProduct = null;
-  function getCart() { return JSON.parse(localStorage.getItem("cart") || "[]"); }
+  function normalizePrice(price) {
+    const value = Number(price) || 0;
+    return value > 999 ? value / 100 : value;
+  }
+  function getCart() {
+    return JSON.parse(localStorage.getItem("cart") || "[]").map(item => ({
+      ...item,
+      price: normalizePrice(item.price)
+    }));
+  }
   function saveCart(cart) {
     localStorage.setItem("cart", JSON.stringify(cart));
     document.getElementById("cart-count").textContent = cart.reduce((s, i) => s + i.qty, 0);
@@ -102,7 +111,7 @@
     const cart = getCart();
     const existing = cart.find(i => i.id === currentProduct.id);
     if (existing) existing.qty += qty;
-    else cart.push({ id: currentProduct.id, name: currentProduct.name, price: Number(currentProduct.price), qty });
+    else cart.push({ id: currentProduct.id, name: currentProduct.name, price: normalizePrice(currentProduct.price), qty });
     saveCart(cart);
     const t = document.getElementById("toast");
     t.textContent = `${currentProduct.name} added to cart`;
@@ -121,7 +130,7 @@
       if (!currentProduct) throw new Error();
       document.title = currentProduct.name;
       document.getElementById("product-name").textContent = currentProduct.name;
-      document.getElementById("product-price").textContent = `$${Number(currentProduct.price).toFixed(2)}`;
+      document.getElementById("product-price").textContent = `$${normalizePrice(currentProduct.price).toFixed(2)}`;
       document.getElementById("product-desc").textContent = currentProduct.description;
       const img = document.getElementById("product-img");
       img.src = currentProduct.image;

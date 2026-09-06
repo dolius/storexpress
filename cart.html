@@ -116,7 +116,16 @@
 </main>
 
 <script>
-  function getCart() { return JSON.parse(localStorage.getItem("cart") || "[]"); }
+  function normalizePrice(price) {
+    const value = Number(price) || 0;
+    return value > 999 ? value / 100 : value;
+  }
+  function getCart() {
+    return JSON.parse(localStorage.getItem("cart") || "[]").map(item => ({
+      ...item,
+      price: normalizePrice(item.price)
+    }));
+  }
   function saveCart(cart) { localStorage.setItem("cart", JSON.stringify(cart)); }
 
   const params = new URLSearchParams(location.search);

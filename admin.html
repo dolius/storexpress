@@ -40,7 +40,12 @@
   </div>
 </main>
 <script>
-(async () => {
+  function normalizePrice(price) {
+    const value = Number(price) || 0;
+    return value > 999 ? value / 100 : value;
+  }
+
+  (async () => {
   try {
     const res = await fetch('/products.json', { cache: 'no-store' });
     if (!res.ok) throw new Error();
@@ -54,7 +59,7 @@
           <div class="muted">${p.description}</div>
         </div>
         <div style="text-align:right">
-          <div><strong>$${Number(p.price).toFixed(2)}</strong></div>
+          <div><strong>$${normalizePrice(p.price).toFixed(2)}</strong></div>
           <div class="tag">${p.active !== false ? 'active' : 'inactive'}</div>
         </div>
       </div>
