@@ -117,16 +117,8 @@
 <div class="toast" id="toast">Added to cart</div>
 
 <script>
-  function normalizePrice(price) {
-    const value = Number(price) || 0;
-    return value > 999 ? value / 100 : value;
-  }
-
   function getCart() {
-    return JSON.parse(localStorage.getItem("cart") || "[]").map(item => ({
-      ...item,
-      price: normalizePrice(item.price)
-    }));
+    return JSON.parse(localStorage.getItem("cart") || "[]");
   }
 
   function saveCart(cart) {
@@ -162,11 +154,11 @@
         <div class="card-body">
           <div class="card-name">${p.name}</div>
           <div class="card-desc">${p.description}</div>
-          <div class="card-price">$${normalizePrice(p.price).toFixed(2)}</div>
+          <div class="card-price">$${Number(p.price).toFixed(2)}</div>
         </div>
         <div class="card-actions">
           <a class="btn btn-secondary" href="/product.html?id=${encodeURIComponent(p.id)}">View</a>
-          <button class="btn btn-primary" onclick="addToCart('${p.id}','${p.name.replace(/'/g,"\\'")}',${normalizePrice(p.price)})">Add to Cart</button>
+          <button class="btn btn-primary" onclick="addToCart('${p.id}','${p.name.replace(/'/g,"\\'")}',${Number(p.price)})">Add to Cart</button>
         </div>
       </div>
     `).join("");
