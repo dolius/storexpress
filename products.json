@@ -2,7 +2,7 @@
   {
     "id": "pdf_test_product",
     "name": "AI Magician Playbook",
-    "price": 1,
+    "price": 1500,
     "image": "/img/ai-magician-playbook.png",
     "download": "/downloads/AI-Magician-Playbook.pdf",
     "description": "A real $1 PDF test product about using AI with sharper framing, prompt structure, and practical output rituals. Buy it to verify live checkout, receipt, secure retrieval link, and download delivery.",
@@ -11,7 +11,7 @@
   {
     "id": "chatgpt_seo_playbook",
     "name": "The ChatGPT SEO Playbook",
-    "price": 9,
+    "price": 1700,
     "image": "/img/chatgpt-seo-playbook.png",
     "download": "/downloads/The-ChatGPT-SEO-Playbook.pdf",
     "description": "A practical PDF playbook for using ChatGPT to plan, structure, and improve SEO content workflows. Instant digital download.",
@@ -20,7 +20,7 @@
   {
     "id": "content_templates_chatgpt",
     "name": "Content Templates ChatGPT Understands",
-    "price": 19,
+    "price": 1900,
     "image": "/img/content-templates.png",
     "download": "/downloads/Content-Templates-That-ChatGPT-Can-Understand.pdf",
     "description": "A PDF template pack for turning rough ideas into structured prompts, briefs, articles, landing pages, and reusable content systems. Instant digital download.",
@@ -29,7 +29,7 @@
   {
     "id": "speed_funnel_system",
     "name": "Speed Funnel System",
-    "price": 29,
+    "price": 2100,
     "image": "/img/speed-funnel-system.png",
     "download": "/downloads/SpeedFunnelSystem.pdf",
     "description": "A compact PDF system for building faster sales funnels: offer structure, page flow, traffic assumptions, and conversion checkpoints. Instant digital download.",
@@ -38,7 +38,7 @@
   {
     "id": "data_center_money_map",
     "name": "The Real Data Center Money Map",
-    "price": 29,
+    "price": 2400,
     "image": "/img/data-center-money-map.png",
     "download": "/downloads/The-Real-Data-Center-Money-Map.pdf",
     "description": "A research-style PDF map of commercial opportunities around data centers, infrastructure demand, service layers, and adjacent markets. Instant digital download.",
@@ -47,7 +47,7 @@
   {
     "id": "vibe_ai_field_guide",
     "name": "Vibe AI Field Guide",
-    "price": 1200,
+    "price": 1500,
     "image": "/img/vibe-ai-field-guide.svg",
     "download": "/downloads/VibeAI.pdf",
     "description": "A practical PDF guide for working with AI as a creative and operational partner: prompt framing, iteration loops, useful outputs, and everyday AI workflows. Instant digital download.",
@@ -56,7 +56,7 @@
   {
     "id": "promptcraft_playbook",
     "name": "Promptcraft Playbook",
-    "price": 1200,
+    "price": 1700,
     "image": "/img/promptcraft-playbook.svg",
     "download": "/downloads/Promptcraft.pdf",
     "description": "A focused PDF product for turning vague asks into strong AI prompts, clean briefs, and repeatable output systems. Instant digital download.",
@@ -65,7 +65,7 @@
   {
     "id": "funnel_automation_blueprint",
     "name": "Funnel Automation Blueprint",
-    "price": 1900,
+    "price": 2100,
     "image": "/img/funnel-automation-blueprint.svg",
     "download": "/downloads/Funnel-Automation-Blueprint.pdf",
     "description": "A compact digital transformation blueprint for connecting offers, pages, follow-up, and automation into a faster revenue workflow. Instant digital download.",
@@ -74,7 +74,7 @@
   {
     "id": "rank_revival_system",
     "name": "Rank Revival System",
-    "price": 2900,
+    "price": 2400,
     "image": "/img/rank-revival-system.svg",
     "download": "/downloads/Rank-Revival-System.pdf",
     "description": "A PDF system for reviving search visibility with audits, content prioritization, AI-assisted improvements, and ranking recovery workflows. Instant digital download.",
