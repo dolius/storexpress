@@ -48,7 +48,7 @@
     "id": "vibe_ai_field_guide",
     "name": "Vibe AI Field Guide",
     "price": 1500,
-    "image": "/img/vibe-ai-field-guide.svg",
+    "image": "/img/vibe-ai-field-guide.png",
     "download": "/downloads/VibeAI.pdf",
     "description": "A practical PDF guide for working with AI as a creative and operational partner: prompt framing, iteration loops, useful outputs, and everyday AI workflows. Instant digital download.",
     "active": true
@@ -57,7 +57,7 @@
     "id": "promptcraft_playbook",
     "name": "Promptcraft Playbook",
     "price": 1700,
-    "image": "/img/promptcraft-playbook.svg",
+    "image": "/img/promptcraft-playbook.png",
     "download": "/downloads/Promptcraft.pdf",
     "description": "A focused PDF product for turning vague asks into strong AI prompts, clean briefs, and repeatable output systems. Instant digital download.",
     "active": true
@@ -66,7 +66,7 @@
     "id": "funnel_automation_blueprint",
     "name": "Funnel Automation Blueprint",
     "price": 2100,
-    "image": "/img/funnel-automation-blueprint.svg",
+    "image": "/img/funnel-automation-blueprint.png",
     "download": "/downloads/Funnel-Automation-Blueprint.pdf",
     "description": "A compact digital transformation blueprint for connecting offers, pages, follow-up, and automation into a faster revenue workflow. Instant digital download.",
     "active": true
@@ -75,7 +75,7 @@
     "id": "rank_revival_system",
     "name": "Rank Revival System",
     "price": 2400,
-    "image": "/img/rank-revival-system.svg",
+    "image": "/img/rank-revival-system.png",
     "download": "/downloads/Rank-Revival-System.pdf",
     "description": "A PDF system for reviving search visibility with audits, content prioritization, AI-assisted improvements, and ranking recovery workflows. Instant digital download.",
     "active": true
