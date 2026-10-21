@@ -14,7 +14,19 @@
     position: sticky; top: 0; z-index: 10;
   }
   header a { text-decoration: none; color: inherit; }
-  .logo { font-size: 20px; font-weight: 700; letter-spacing: -0.5px; }
+  .logo {
+    display: flex; flex-direction: column; gap: 3px; color: #111;
+    line-height: 1; letter-spacing: normal;
+  }
+  .logo-wordmark { display: flex; align-items: baseline; gap: 7px; }
+  .logo-mark {
+    display: inline-block; padding: 7px 10px 8px; border-radius: 7px;
+    background: #111; color: #fff; font: 800 18px/1 Georgia, serif;
+    letter-spacing: -0.5px;
+  }
+  .logo-of { font: 600 12px/1 Georgia, serif; color: #666; }
+  .logo-identity { font: 700 18px/1 Georgia, serif; letter-spacing: -0.7px; }
+  .logo-subline { font-size: 10px; font-weight: 650; color: #666; letter-spacing: 0.02em; }
   .nav-right { display: flex; gap: 20px; align-items: center; }
   .nav-right a { font-size: 14px; color: #555; }
   .cart-link {
@@ -92,7 +104,10 @@
 <body>
 
 <header>
-  <a href="/" class="logo">Storexpress</a>
+  <a href="/" class="logo" aria-label="StoreXpress home">
+    <span class="logo-wordmark"><span class="logo-mark">StoreXpress</span><span class="logo-of">for</span><span class="logo-identity">creators</span></span>
+    <span class="logo-subline">For product creators and service providers</span>
+  </a>
   <div class="nav-right">
     <a href="/admin.html">Admin</a>
     <a href="/cart.html" class="cart-link">Cart (<span id="cart-count">0</span>)</a>
